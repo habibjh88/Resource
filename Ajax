@@ -1,0 +1,25 @@
+var data = {
+	action: 'rtcl_el_templeate_builder',
+	post_id: post_id ? post_id : null,
+	rttpg_nonce: rtcl_el_tb.rttpg_nonce
+};
+
+$.ajax({
+	url: rtcl_el_tb.ajaxurl,
+	data: data,
+	type: "POST",
+	beforeSend: function () {
+		modal.addModal().addLoading();
+	},
+	success: function (response) {
+		modal.removeLoading();
+		//console.log( response )
+		modal.addTitle(response.title);
+		if (response.success) {
+			modal.content(response.content);
+		}
+	},
+	error: function (e) {
+
+	}
+});
